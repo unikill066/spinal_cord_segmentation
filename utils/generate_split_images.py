@@ -76,7 +76,9 @@ class ImageSplitter:
 
                 output_name = f"{png_path.stem}_{row}_{col}.png"
                 output_path = self.output_dir / output_name
-                success = cv2.imwrite(str(output_path), sub_img)
+                # success = cv2.imwrite(str(output_path), sub_img)
+                sub_img_bgr = cv2.cvtColor(sub_img, cv2.COLOR_RGB2BGR)
+                success = cv2.imwrite(str(output_path), sub_img_bgr)
                 if success:
                     self.logger.info(f"Saved sub-image: {output_name}")
                 else:
